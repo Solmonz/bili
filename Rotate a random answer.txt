@@ -1,0 +1,113 @@
+
+//前半部分
+
+function Sleep(ms) {
+    return new Promise(resolve => setTimeout(() => resolve('sleep'), ms));
+}
+let answer1 = async function () {
+    let answer = $(".answer-outer")
+        let titlenumber = $(".title-number")
+        console.log(titlenumber)
+        if (!titlenumber.length) {
+            clearInterval(answer1_timer)
+            return getoption()
+        }
+        let l = answer.length;
+    let ii = Math.ceil(Math.random() * (l))
+        answer[ii - 1].click();
+    for (let i = 0; i < l; i++) {
+        if (i == ii - 1)
+            continue
+            let titlenumber_new = $(".title-number")
+                console.log(titlenumber[0].innerText)
+                console.log(titlenumber_new[0].innerText)
+                if (titlenumber[0].innerText != titlenumber_new[0].innerText)
+                    break;
+                console.log(i)
+                await Sleep(1000)
+                answer[i].click()
+    }
+}
+let answer1_timer = setInterval(() => {
+    answer1()
+}, 5000)
+//后半部分
+let answer2 = async function () {
+    let answer = $(".answer-outer")
+    let l = answer.length;		
+	for (let i = 0; i < l; i++) {
+		await Sleep(2000)
+	let titlenumber = $(".title-number")
+	if(titlenumber[0].innerText.indexOf('80')) break
+	if($(".progress-score")[0].innerText.indexOf('60')) break
+    let ii = Math.ceil(Math.random() * (l))
+        answer[ii - 1].click();
+	}
+}
+let getoption = async function () {
+    let option = $(".option")
+        let l = option.length;
+    let ii = Math.ceil(Math.random() * (l))
+        await Sleep(2000)
+        option[ii - 1].click();
+    let num = 1
+        for (let i = 0; i < l; i++) {
+            if (num >= 3) {
+                await Sleep(2000)
+                $(".is-active").click();
+                var r = confirm("确定后随机答题至80题!");
+                if (r == true) {
+                    answer2()
+                }
+                break
+            }
+            let iii = Math.ceil(Math.random() * (l))
+                if (ii == iii)
+                    continue
+                    await Sleep(2000)
+                    option[iii - 1].click();
+                num++
+        }
+}
+
+
+/**
+ * 
+ * 
+ * 1.前40題 隨即答題 41-50 默認選擇第一項 
+ * 
+ */
+
+index = 0
+
+let interval = setInterval(() => {
+	
+	num = $(".title-number")[0].innerText;
+	N = num.substring(2,num.lastIndexOf('/'));
+	
+	//想答到任意一题修改下面这一行数字 
+	if (N == 50) {
+		clearInterval(interval)
+	}
+	console.log(N);
+	if (N <= 40) {
+		$(".answer-outer").eq(index).trigger("click");
+		nub = $(".title-number")[0].innerText;
+	}else if(N >50){
+
+		$(".answer-outer").eq(index).trigger("click");
+		nub = $(".title-number")[0].innerText;
+	}else{
+		//41-50 默认选择第一项
+		$(".answer-outer").eq(0).trigger("click");
+		nub = $(".title-number")[0].innerText;
+	}
+	
+	index = index === 3 ? 0 : index + 1
+	//调节答题速度请修改2000 的值 单位毫秒
+}, 2000)
+
+
+
+
+
